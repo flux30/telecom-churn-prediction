@@ -1,0 +1,49 @@
+{
+  "decision_tree": {
+    "model_name": "Decision Tree",
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1_score": 0.6666666666666666,
+    "confusion_matrix": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "true_negatives": 0,
+    "false_positives": 1,
+    "false_negatives": 0,
+    "true_positives": 1
+  },
+  "knn": {
+    "model_name": "KNN",
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1_score": 0.6666666666666666,
+    "confusion_matrix": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "true_negatives": 0,
+    "false_positives": 1,
+    "false_negatives": 0,
+    "true_positives": 1
+  },
+  "comparison": {
+    "decision_tree_avg": 0.6666666666666666,
+    "knn_avg": 0.6666666666666666,
+    "recommended_model": "KNN"
+  }
+}

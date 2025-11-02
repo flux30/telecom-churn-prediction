@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Comparison - Telecom Churn Prediction{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">Model Comparison</h1>
+        <p class="page-subtitle">Decision Tree vs K-Nearest Neighbors Performance</p>
+    </div>
+
+    {% if error or not metrics %}
+    <div class="error-message glass-morphism">
+        <p>{{ error or "No metrics available. Please train the models first." }}</p>
+    </div>
+    {% else %}
+
+    <!-- Recommendation Banner -->
+    <section class="recommendation-banner glass-morphism">
+        <div class="recommendation-icon">🏆</div>
+        <div class="recommendation-content">
+            <h2>Recommended Model</h2>
+            <p class="recommended-model">{{ metrics.comparison.recommended_model }}</p>
+            <p class="recommendation-reason">
+                {% if metrics.comparison.recommended_model == 'Decision Tree' %}
+                Better interpretability, faster predictions, and superior performance make it ideal for production.
+                {% else %}
+                Superior accuracy and pattern recognition for this telecom dataset.
+                {% endif %}
+            </p>
+        </div>
+    </section>
+
+    <!-- Performance Metrics Table -->
+    <section class="comparison-table-container glass-morphism">
+        <h2>Performance Metrics Comparison</h2>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Decision Tree</th>
+                    <th>KNN</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Accuracy</td>
+                    <td>{{ "%.4f"|format(metrics.decision_tree.accuracy) }}</td>
+                    <td>{{ "%.4f"|format(metrics.knn.accuracy) }}</td>
+                    <td class="winner">
+                        {% if metrics.decision_tree.accuracy >= metrics.knn.accuracy %}
+                        🌳 Decision Tree
+                        {% else %}
+                        🎯 KNN
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Precision</td>
+                    <td>{{ "%.4f"|format(metrics.decision_tree.precision) }}</td>
+                    <td>{{ "%.4f"|format(metrics.knn.precision) }}</td>
+                    <td class="winner">
+                        {% if metrics.decision_tree.precision >= metrics.knn.precision %}
+                        🌳 Decision Tree
+                        {% else %}
+                        🎯 KNN
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Recall</td>
+                    <td>{{ "%.4f"|format(metrics.decision_tree.recall) }}</td>
+                    <td>{{ "%.4f"|format(metrics.knn.recall) }}</td>
+                    <td class="winner">
+                        {% if metrics.decision_tree.recall >= metrics.knn.recall %}
+                        🌳 Decision Tree
+                        {% else %}
+                        🎯 KNN
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>F1-Score</td>
+                    <td>{{ "%.4f"|format(metrics.decision_tree.f1_score) }}</td>
+                    <td>{{ "%.4f"|format(metrics.knn.f1_score) }}</td>
+                    <td class="winner">
+                        {% if metrics.decision_tree.f1_score >= metrics.knn.f1_score %}
+                        🌳 Decision Tree
+                        {% else %}
+                        🎯 KNN
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Confusion Matrices -->
+    <section class="confusion-matrices">
+        <h2 class="section-title">Confusion Matrices</h2>
+        
+        <div class="matrices-grid">
+            <!-- Decision Tree -->
+            <div class="glass-card matrix-container">
+                <h3>Decision Tree</h3>
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No Churn</th>
+                            <th>Churn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>No Churn</th>
+                            <td class="cell-tn">{{ metrics.decision_tree.true_negatives }}</td>
+                            <td class="cell-fp">{{ metrics.decision_tree.false_positives }}</td>
+                        </tr>
+                        <tr>
+                            <th>Churn</th>
+                            <td class="cell-fn">{{ metrics.decision_tree.false_negatives }}</td>
+                            <td class="cell-tp">{{ metrics.decision_tree.true_positives }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- KNN -->
+            <div class="glass-card matrix-container">
+                <h3>K-Nearest Neighbors</h3>
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No Churn</th>
+                            <th>Churn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>No Churn</th>
+                            <td class="cell-tn">{{ metrics.knn.true_negatives }}</td>
+                            <td class="cell-fp">{{ metrics.knn.false_positives }}</td>
+                        </tr>
+                        <tr>
+                            <th>Churn</th>
+                            <td class="cell-fn">{{ metrics.knn.false_negatives }}</td>
+                            <td class="cell-tp">{{ metrics.knn.true_positives }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Chart -->
+    <section class="chart-section">
+        <h2 class="section-title">Visual Comparison</h2>
+        <div class="glass-card chart-container-wide">
+            <canvas id="comparisonChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Model Characteristics -->
+    <section class="characteristics-section">
+        <h2 class="section-title">Model Characteristics</h2>
+        
+        <div class="characteristics-grid">
+            <div class="glass-card characteristic-card">
+                <h3>🌳 Decision Tree</h3>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Advantages</h4>
+                        <ul>
+                            <li>Easy to interpret and explain</li>
+                            <li>Visual decision rules</li>
+                            <li>Fast prediction time</li>
+                            <li>Handles non-linear relationships</li>
+                            <li>No feature scaling needed</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Limitations</h4>
+                        <ul>
+                            <li>Prone to overfitting</li>
+                            <li>Unstable with small changes</li>
+                            <li>Biased with imbalanced data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card characteristic-card">
+                <h3>🎯 K-Nearest Neighbors</h3>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Advantages</h4>
+                        <ul>
+                            <li>Simple and intuitive</li>
+                            <li>No training phase</li>
+                            <li>Handles multi-class naturally</li>
+                            <li>Works well with small datasets</li>
+                            <li>Non-parametric approach</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Limitations</h4>
+                        <ul>
+                            <li>Slow with large datasets</li>
+                            <li>Sensitive to feature scaling</li>
+                            <li>Requires optimal K selection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% endif %}
+</div>
+
+<div id="comparisonData"
+     data-dt-accuracy="{{ metrics.decision_tree.accuracy if metrics else 0 }}"
+     data-dt-precision="{{ metrics.decision_tree.precision if metrics else 0 }}"
+     data-dt-recall="{{ metrics.decision_tree.recall if metrics else 0 }}"
+     data-dt-f1="{{ metrics.decision_tree.f1_score if metrics else 0 }}"
+     data-knn-accuracy="{{ metrics.knn.accuracy if metrics else 0 }}"
+     data-knn-precision="{{ metrics.knn.precision if metrics else 0 }}"
+     data-knn-recall="{{ metrics.knn.recall if metrics else 0 }}"
+     data-knn-f1="{{ metrics.knn.f1_score if metrics else 0 }}"
+     style="display:none;">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chart-visualizations.js') }}"></script>
+{% endblock %}

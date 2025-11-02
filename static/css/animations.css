@@ -1,0 +1,444 @@
+/* ===================================
+   ANIMATIONS & TRANSITIONS
+   Production Ready - Charcoal Theme
+   =================================== */
+
+/* ===================================
+   KEYFRAME ANIMATIONS
+   =================================== */
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade Out Animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+/* Slide In From Left */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide In From Right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Scale Out Animation */
+@keyframes scaleOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Loading Spinner */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Shimmer Loading Effect */
+@keyframes shimmer {
+    0% {
+        background-position: -1200px 0;
+    }
+    100% {
+        background-position: 1200px 0;
+    }
+}
+
+/* Gradient Shift Animation */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Glow Effect */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(16, 185, 129, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+    }
+}
+
+/* ===================================
+   APPLY ANIMATIONS
+   =================================== */
+
+/* Fade In Classes */
+.fade-in {
+    animation: fadeIn 0.6s ease-out forwards !important;
+}
+
+.fade-in.delay-1 { animation-delay: 0.1s; }
+.fade-in.delay-2 { animation-delay: 0.2s; }
+.fade-in.delay-3 { animation-delay: 0.3s; }
+.fade-in.delay-4 { animation-delay: 0.4s; }
+
+/* Slide Animations */
+.slide-in-left {
+    animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Scale Animations */
+.scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* Stagger Animation Classes */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* ===================================
+   INTERACTIVE TRANSITIONS
+   =================================== */
+
+/* Smooth transitions for all interactive elements */
+.btn,
+.nav-link,
+.feature-card,
+.metric-card,
+.stat-card,
+.glass-morphism,
+.glass-card,
+.insight-card,
+.characteristic-card,
+a {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Form elements transitions */
+input,
+select,
+textarea {
+    transition: all 0.3s ease !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    transition: all 0.3s ease !important;
+}
+
+/* ===================================
+   HOVER STATE ANIMATIONS
+   =================================== */
+
+/* Card Hover Lift */
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Glow Hover */
+.hover-glow:hover {
+    animation: glow 1.5s infinite !important;
+}
+
+/* Scale Hover */
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* ===================================
+   LOADING STATES
+   =================================== */
+
+/* Loading Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite !important;
+}
+
+/* Shimmer Loading */
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0.5) 60%,
+        rgba(255, 255, 255, 0)
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* ===================================
+   SCROLL REVEAL ANIMATIONS
+   =================================== */
+
+/* Reveal class for scroll-triggered animations */
+.reveal {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: all 0.6s ease-out !important;
+}
+
+.reveal.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+}
+
+/* ===================================
+   FORM ANIMATIONS
+   =================================== */
+
+/* Form Group Focus Animation */
+.form-group input:focus,
+.form-group select:focus {
+    animation: none !important;
+}
+
+/* Error State Animation */
+.form-group.error input,
+.form-group.error select {
+    animation: pulse 0.5s ease-in-out 1;
+}
+
+/* Success State Animation */
+.form-group.success input,
+.form-group.success select {
+    animation: pulse 0.5s ease-in-out 1;
+}
+
+/* ===================================
+   UTILITY ANIMATIONS
+   =================================== */
+
+/* Pulse Animation Class */
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+/* Bounce Animation Class */
+.bounce {
+    animation: bounce 1s ease-in-out infinite !important;
+}
+
+/* Spin Animation Class */
+.spin {
+    animation: spin 1s linear infinite !important;
+}
+
+/* Shimmer Class */
+.shimmer-loading {
+    animation: shimmer 2s infinite !important;
+}
+
+/* Gradient Animation */
+.gradient-animated {
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+}
+
+/* ===================================
+   CONTENT VISIBILITY RULES
+   =================================== */
+
+/* CRITICAL: Ensure all content is always visible */
+* {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Prevent hidden classes from hiding content */
+.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.visible {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* ===================================
+   ACCESSIBILITY
+   =================================== */
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ===================================
+   RESPONSIVE ANIMATIONS
+   =================================== */
+
+@media (max-width: 768px) {
+    /* Reduce animation delays on mobile */
+    .stagger-1 { animation-delay: 0.05s !important; }
+    .stagger-2 { animation-delay: 0.1s !important; }
+    .stagger-3 { animation-delay: 0.15s !important; }
+    .stagger-4 { animation-delay: 0.2s !important; }
+    .stagger-5 { animation-delay: 0.25s !important; }
+    
+    /* Reduce hover lift on mobile */
+    .hover-lift:hover {
+        transform: translateY(-4px) !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    /* Adjust glow colors for dark theme */
+    .glow {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3) !important;
+    }
+}
+
+/* ===================================
+   Z-INDEX FOR ANIMATIONS
+   =================================== */
+
+.spinner {
+    z-index: 9999;
+}
+
+.modal.animating {
+    z-index: 9998;
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================== */
+
+/* Use transform and opacity for best performance */
+.animate-transform {
+    will-change: transform;
+}
+
+.animate-opacity {
+    will-change: opacity;
+}
+
+/* GPU acceleration */
+.gpu-accelerate {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* ===================================
+   DEBUG MODE (Optional)
+   =================================== */
+
+/* Uncomment to see animation boundaries */
+/*
+.debug-animation {
+    outline: 2px solid rgba(16, 185, 129, 0.5);
+}
+*/

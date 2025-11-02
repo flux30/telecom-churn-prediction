@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Telecom Churn Prediction{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="page-header">
+            <h1 class="hero-title">Telecom <span class="accent">Churn Prediction</span></h1>
+            <p class="hero-subtitle">Decision Trees & KNN Classifier Comparison</p>
+            <p class="hero-description">
+                Predict customer churn in the Indian telecom sector using advanced machine learning. 
+                Compare two powerful supervised learning algorithms to identify at-risk customers and design effective retention strategies.
+            </p>
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="/analysis" class="btn btn-primary">📊 View Analysis</a>
+            <a href="/predict" class="btn btn-secondary">🎯 Make Prediction</a>
+            <a href="/comparison" class="btn btn-secondary">⚖️ Compare Models</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Key Features</h2>
+        
+        <div class="features-grid">
+            <div class="glass-card feature-card">
+                <div class="feature-icon">🌳</div>
+                <h3>Decision Tree Classifier</h3>
+                <p>Interpretable tree-based model with clear decision paths for churn prediction</p>
+            </div>
+            
+            <div class="glass-card feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>KNN Algorithm</h3>
+                <p>Distance-based instance learning for accurate pattern recognition</p>
+            </div>
+            
+            <div class="glass-card feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Data Analysis</h3>
+                <p>Comprehensive exploratory analysis with customer insights</p>
+            </div>
+            
+            <div class="glass-card feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Model Comparison</h3>
+                <p>Side-by-side performance metrics and detailed evaluation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics Preview -->
+    <section class="metrics-preview">
+        <h2 class="section-title">Project Metrics</h2>
+        
+        <div class="metrics-grid">
+            <div class="glass-card metric-card">
+                <div class="metric-value">8</div>
+                <div class="metric-label">Customers</div>
+            </div>
+            
+            <div class="glass-card metric-card">
+                <div class="metric-value">50%</div>
+                <div class="metric-label">Churn Rate</div>
+            </div>
+            
+            <div class="glass-card metric-card">
+                <div class="metric-value">6</div>
+                <div class="metric-label">Features Used</div>
+            </div>
+            
+            <div class="glass-card metric-card">
+                <div class="metric-value">2</div>
+                <div class="metric-label">ML Models</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about glass-morphism">
+        <div class="about-content">
+            <h2>About This Project</h2>
+            <p>
+                This project addresses customer churn prediction in the Indian telecom sector (Jio, Airtel, BSNL). 
+                We implement and compare two supervised learning classifiers to identify customers likely to discontinue service.
+            </p>
+            <p>
+                The analysis covers customer demographics, usage patterns, service quality, and account history 
+                to build accurate predictive models with real-world business applications.
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock %}

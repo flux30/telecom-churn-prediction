@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis - Telecom Churn Prediction{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">Data Analysis</h1>
+        <p class="page-subtitle">Comprehensive exploratory analysis of customer churn patterns</p>
+    </div>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="glass-card stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value">{{ stats.total_customers }}</div>
+                <div class="stat-label">Total Customers</div>
+            </div>
+
+            <div class="glass-card stat-card">
+                <div class="stat-icon">📉</div>
+                <div class="stat-value">{{ stats.churned }}</div>
+                <div class="stat-label">Churned</div>
+            </div>
+
+            <div class="glass-card stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value">{{ stats.retained }}</div>
+                <div class="stat-label">Retained</div>
+            </div>
+
+            <div class="glass-card stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value">{{ stats.churn_rate }}%</div>
+                <div class="stat-label">Churn Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="metrics-section">
+        <h2 class="section-title">Average Customer Metrics</h2>
+        
+        <div class="metrics-cards">
+            <div class="glass-card metric-info-card">
+                <h3>Average Age</h3>
+                <p class="metric-big">{{ stats.avg_age }} years</p>
+            </div>
+
+            <div class="glass-card metric-info-card">
+                <h3>Average Spend</h3>
+                <p class="metric-big">₹{{ stats.avg_spend }}</p>
+            </div>
+
+            <div class="glass-card metric-info-card">
+                <h3>Average Tenure</h3>
+                <p class="metric-big">{{ stats.avg_tenure }} mo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="charts-section">
+        <h2 class="section-title">Visual Insights</h2>
+        
+        <div class="charts-grid">
+            <div class="glass-card chart-container">
+                <h3>Churn Distribution</h3>
+                <canvas id="churnChart"></canvas>
+            </div>
+
+            <div class="glass-card chart-container">
+                <h3>Churn by Recharge Type</h3>
+                <canvas id="rechargeChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights-section">
+        <h2 class="section-title">Key Insights</h2>
+        
+        <div class="insights-grid">
+            <div class="glass-card insight-card">
+                <h3>📌 High Risk Indicators</h3>
+                <ul>
+                    <li>Low tenure (≤12 months)</li>
+                    <li>Multiple complaints (2+)</li>
+                    <li>Low monthly spend (≤₹499)</li>
+                    <li>Prepaid 28-day plans</li>
+                </ul>
+            </div>
+
+            <div class="glass-card insight-card">
+                <h3>✨ Retention Factors</h3>
+                <ul>
+                    <li>Postpaid subscriptions</li>
+                    <li>High data usage (≥35 GB)</li>
+                    <li>Long tenure (≥24 months)</li>
+                    <li>Zero complaints</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Data for charts -->
+<div id="analysisData" 
+     data-churned="{{ stats.churned }}" 
+     data-retained="{{ stats.retained }}"
+     data-recharge='{{ churn_by_type|tojson }}'
+     style="display:none;">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chart-visualizations.js') }}"></script>
+{% endblock %}

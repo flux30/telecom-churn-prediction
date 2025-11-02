@@ -1,0 +1,9 @@
+Customer_ID,Age,Monthly_Spend_INR,Tenure_Months,Recharge_Type,Data_Usage_GB_Month,Complaints_Last_3_Months,Churn
+C001,25,299,6,Prepaid (28 Days),12,2,Yes
+C002,42,799,24,Postpaid,35,0,No
+C003,31,199,3,Prepaid (84 Days),5,4,Yes
+C004,50,1199,48,Postpaid (Corporate),60,1,No
+C005,28,499,12,Prepaid (Annual),20,3,Yes
+C006,36,399,18,Prepaid (28 Days),15,2,No
+C007,55,999,36,Postpaid,50,0,No
+C008,23,229,4,Prepaid (28 Days),10,5,Yes

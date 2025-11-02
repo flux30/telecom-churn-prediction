@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Documentation - Telecom Churn Prediction{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="documentation-section">
+        <h1 class="page-title">Documentation</h1>
+        <p class="page-subtitle">Complete guide to the Customer Churn Prediction System</p>
+
+        <!-- Table of Contents -->
+        <div class="toc glass-morphism">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#overview">Project Overview</a></li>
+                <li><a href="#dataset">Dataset Description</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#models">Machine Learning Models</a></li>
+                <li><a href="#evaluation">Model Evaluation</a></li>
+                <li><a href="#usage">How to Use</a></li>
+                <li><a href="#results">Results & Findings</a></li>
+            </ul>
+        </div>
+
+        <!-- Overview -->
+        <div class="doc-section glass-morphism" id="overview">
+            <h2>Project Overview</h2>
+            <p>
+                This project addresses customer churn prediction in the Indian telecom sector using 
+                supervised machine learning algorithms. The system compares Decision Tree and 
+                K-Nearest Neighbors (KNN) classifiers to identify customers at risk of churning.
+            </p>
+            <p>
+                <strong>Learning Objectives:</strong>
+            </p>
+            <ul>
+                <li>Understand supervised learning and classification algorithms</li>
+                <li>Implement Decision Tree and KNN for real-world problems</li>
+                <li>Evaluate models using standard metrics</li>
+                <li>Compare model performance and select optimal approach</li>
+                <li>Apply machine learning to business problems</li>
+            </ul>
+        </div>
+
+        <!-- Dataset -->
+        <div class="doc-section glass-morphism" id="dataset">
+            <h2>Dataset Description</h2>
+            <p>
+                The dataset consists of 8 customer records from Indian telecom operators 
+                (Jio, Airtel, BSNL) with the following features:
+            </p>
+            
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Customer ID</td>
+                        <td>String</td>
+                        <td>Unique identifier (C001-C008)</td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td>Numeric</td>
+                        <td>Customer age in years (23-55)</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Spend (INR)</td>
+                        <td>Numeric</td>
+                        <td>Average monthly expenditure (₹199-₹1199)</td>
+                    </tr>
+                    <tr>
+                        <td>Tenure (Months)</td>
+                        <td>Numeric</td>
+                        <td>Duration as customer (3-48 months)</td>
+                    </tr>
+                    <tr>
+                        <td>Recharge Type</td>
+                        <td>Categorical</td>
+                        <td>Plan type (Prepaid/Postpaid variants)</td>
+                    </tr>
+                    <tr>
+                        <td>Data Usage (GB/Month)</td>
+                        <td>Numeric</td>
+                        <td>Average monthly data consumption (5-60 GB)</td>
+                    </tr>
+                    <tr>
+                        <td>Complaints (Last 3 mo)</td>
+                        <td>Numeric</td>
+                        <td>Number of complaints filed (0-5)</td>
+                    </tr>
+                    <tr>
+                        <td>Churn</td>
+                        <td>Binary</td>
+                        <td>Target variable (Yes/No)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Methodology -->
+        <div class="doc-section glass-morphism" id="methodology">
+            <h2>Methodology</h2>
+            
+            <h3>1. Data Preprocessing</h3>
+            <ul>
+                <li><strong>Loading:</strong> Data loaded from CSV format</li>
+                <li><strong>Encoding:</strong> Categorical features converted to numerical
+                    <ul>
+                        <li>Recharge Type: Label encoding (0-4)</li>
+                        <li>Churn: Binary encoding (Yes=1, No=0)</li>
+                    </ul>
+                </li>
+                <li><strong>Splitting:</strong> 75% training, 25% testing (stratified)</li>
+                <li><strong>Scaling:</strong> StandardScaler for feature normalization</li>
+            </ul>
+
+            <h3>2. Feature Selection</h3>
+            <p>Six features used for prediction:</p>
+            <ul>
+                <li>Age</li>
+                <li>Monthly Spend (INR)</li>
+                <li>Tenure (Months)</li>
+                <li>Recharge Type (Encoded)</li>
+                <li>Data Usage (GB/Month)</li>
+                <li>Complaints (Last 3 Months)</li>
+            </ul>
+
+            <h3>3. Model Training</h3>
+            <p><strong>Decision Tree Parameters:</strong></p>
+            <ul>
+                <li>Max Depth: 5</li>
+                <li>Min Samples Split: 2</li>
+                <li>Min Samples Leaf: 1</li>
+                <li>Criterion: Gini impurity</li>
+            </ul>
+            
+            <p><strong>KNN Parameters:</strong></p>
+            <ul>
+                <li>Number of Neighbors: 3</li>
+                <li>Distance Metric: Euclidean</li>
+                <li>Weights: Uniform</li>
+            </ul>
+        </div>
+
+        <!-- Models -->
+        <div class="doc-section glass-morphism" id="models">
+            <h2>Machine Learning Models</h2>
+
+            <h3>Decision Tree Classifier</h3>
+            <p>
+                A tree-structured model that makes decisions by splitting data based on feature 
+                values. Each internal node represents a test on a feature, each branch represents 
+                the outcome, and each leaf node represents a class label.
+            </p>
+            <p><strong>How it works:</strong></p>
+            <ol>
+                <li>Select the best feature to split data (using Gini impurity)</li>
+                <li>Create branches for each possible value</li>
+                <li>Repeat recursively for each branch</li>
+                <li>Stop when max depth reached or node is pure</li>
+            </ol>
+
+            <h3>K-Nearest Neighbors (KNN)</h3>
+            <p>
+                A distance-based algorithm that classifies a data point based on the majority 
+                class of its K nearest neighbors in the feature space.
+            </p>
+            <p><strong>How it works:</strong></p>
+            <ol>
+                <li>Calculate distance from test point to all training points</li>
+                <li>Select K nearest neighbors</li>
+                <li>Count votes from these neighbors</li>
+                <li>Assign the majority class to test point</li>
+            </ol>
+        </div>
+
+        <!-- Evaluation -->
+        <div class="doc-section glass-morphism" id="evaluation">
+            <h2>Model Evaluation</h2>
+            
+            <p>Models are evaluated using multiple metrics:</p>
+            
+            <h3>Accuracy</h3>
+            <p>Proportion of correct predictions among total predictions.</p>
+            <p class="formula">Accuracy = (TP + TN) / (TP + TN + FP + FN)</p>
+
+            <h3>Precision</h3>
+            <p>Proportion of true churns among predicted churns.</p>
+            <p class="formula">Precision = TP / (TP + FP)</p>
+
+            <h3>Recall (Sensitivity)</h3>
+            <p>Proportion of actual churns correctly identified.</p>
+            <p class="formula">Recall = TP / (TP + FN)</p>
+
+            <h3>F1-Score</h3>
+            <p>Harmonic mean of precision and recall.</p>
+            <p class="formula">F1 = 2 × (Precision × Recall) / (Precision + Recall)</p>
+
+            <h3>Confusion Matrix</h3>
+            <p>A 2×2 matrix showing:</p>
+            <ul>
+                <li><strong>True Negatives (TN):</strong> Correctly predicted non-churns</li>
+                <li><strong>False Positives (FP):</strong> Non-churns incorrectly predicted as churns</li>
+                <li><strong>False Negatives (FN):</strong> Churns incorrectly predicted as non-churns</li>
+                <li><strong>True Positives (TP):</strong> Correctly predicted churns</li>
+            </ul>
+        </div>
+
+        <!-- Usage -->
+        <div class="doc-section glass-morphism" id="usage">
+            <h2>How to Use</h2>
+
+            <h3>Making Predictions</h3>
+            <ol>
+                <li>Navigate to the <a href="/predict">Predict</a> page</li>
+                <li>Enter customer information in the form</li>
+                <li>Select model (Decision Tree or KNN)</li>
+                <li>Click "Predict Churn"</li>
+                <li>View results and recommendations</li>
+            </ol>
+
+            <h3>Viewing Analysis</h3>
+            <ol>
+                <li>Go to the <a href="/analysis">Analysis</a> page</li>
+                <li>Explore customer statistics and distributions</li>
+                <li>Review churn patterns by recharge type</li>
+                <li>Identify key risk factors</li>
+            </ol>
+
+            <h3>Comparing Models</h3>
+            <ol>
+                <li>Visit the <a href="/comparison">Comparison</a> page</li>
+                <li>Review side-by-side performance metrics</li>
+                <li>Analyze confusion matrices</li>
+                <li>See recommended model</li>
+            </ol>
+        </div>
+
+        <!-- Results -->
+        <div class="doc-section glass-morphism" id="results">
+            <h2>Results & Findings</h2>
+
+            <h3>
